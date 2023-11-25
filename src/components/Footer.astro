@@ -1,8 +1,19 @@
 ---
 const today = new Date();
+
+const themes = ['light', 'dark', 'system'];
 ---
 
 <footer>
+	<div class="theme-switcher">
+		{themes.map(theme => (
+			<label>
+				{theme}	
+				<input type="radio" name="themeSwitcher" id={theme}>
+			</label>
+		))}
+	</div>
+
 	&copy; {today.getFullYear()} Your name here. All rights reserved.
 	<div class="social-links">
 		<a href="https://m.webtoo.ls/@astro" target="_blank">
@@ -46,6 +57,19 @@ const today = new Date();
 		color: rgb(var(--gray));
 		text-align: center;
 	}
+
+	.theme-switcher {
+		margin: 2rem;
+		padding: 2rem;
+		display: flex;
+		gap: 1rem;
+		justify-content: center;
+
+		& label {
+			display: grid;
+		}
+	}
+
 	.social-links {
 		display: flex;
 		justify-content: center;
