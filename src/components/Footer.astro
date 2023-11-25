@@ -84,3 +84,16 @@ const themes = ['light', 'dark', 'system'];
 		color: rgb(var(--gray-dark));
 	}
 </style>
+
+<script>
+	const themeToggles = document.querySelectorAll('[name="themeSwitcher"]');
+
+	const changeTheme = (e) => {
+		// Document.documentElement returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
+		document.documentElement.setAttribute('data-theme', e.target.id);
+	}
+
+	themeToggles.forEach(toggle => {
+		toggle.addEventListener('change', changeTheme);
+	});	
+</script>
