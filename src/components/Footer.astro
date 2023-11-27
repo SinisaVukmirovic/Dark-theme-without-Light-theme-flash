@@ -86,14 +86,31 @@ const themes = ['light', 'dark', 'system'];
 </style>
 
 <script>
+	type Themes = 'light' | 'dark' | 'system';
+
 	const themeToggles = document.querySelectorAll('[name="themeSwitcher"]');
 
-	const changeTheme = (e) => {
+	const changeTheme = (theme: Themes) => {
 		// Document.documentElement returns the Element that is the root element of the document (for example, the <html> element for HTML documents).
-		document.documentElement.setAttribute('data-theme', e.target.id);
+		document.documentElement.setAttribute('data-theme', theme);
+	}
+
+		// to save as a cookie
+	const saveTheme = (theme: Themes) => {
+		// saving as a cookie so that it get send from the SSR side and that there is no flash 
+		document.cookie = `theme=${theme}`;
+		// in console application tab, under cookies we have to refresh to see the change in value/name
+	}
+
+	const handleChangeTheme = (e: Event) => {
+		const theme = (e.target as HTMLElement).id as Themes;
+		changeTheme(theme);
+
+		// to save in cookies
+		saveTheme(theme);
 	}
 
 	themeToggles.forEach(toggle => {
-		toggle.addEventListener('change', changeTheme);
+		toggle.addEventListener('change', handleChangeTheme);
 	});	
 </script>
