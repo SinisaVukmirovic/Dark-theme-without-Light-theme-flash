@@ -97,8 +97,12 @@ const themes = ['light', 'dark', 'system'];
 
 		// to save as a cookie
 	const saveTheme = (theme: Themes) => {
+		// to save the cookin for specific time (a year in this case);
+		const date = new Date();
+		date.setTime(date.getTime() + 365 * 86400000);
+
 		// saving as a cookie so that it get send from the SSR side and that there is no flash 
-		document.cookie = `theme=${theme}`;
+		document.cookie = `theme=${theme}; expires=${date.toUTCString()}`;
 		// in console application tab, under cookies we have to refresh to see the change in value/name
 	}
 
