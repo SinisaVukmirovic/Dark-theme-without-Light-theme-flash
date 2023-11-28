@@ -2,14 +2,17 @@
 const today = new Date();
 
 const themes = ['light', 'dark', 'system'];
+
+const theme = Astro.cookies.get('theme')?.value ?? 'system';
 ---
 
 <footer>
 	<div class="theme-switcher">
-		{themes.map(theme => (
+		{themes.map(t => (
 			<label>
-				{theme}	
-				<input type="radio" name="themeSwitcher" id={theme}>
+				{t}	
+				<input type="radio" checked={theme === t}
+				name="themeSwitcher" id={t}>
 			</label>
 		))}
 	</div>

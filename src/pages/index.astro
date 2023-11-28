@@ -3,10 +3,13 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// setting the theme on the SSR before page loads
+const theme = Astro.cookies.get('theme')?.value ?? 'system';
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme={theme}>
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
