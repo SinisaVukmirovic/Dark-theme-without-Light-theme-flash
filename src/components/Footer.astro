@@ -117,4 +117,17 @@ const themes = ['light', 'dark', 'system'];
 	themeToggles.forEach(toggle => {
 		toggle.addEventListener('change', handleChangeTheme);
 	});	
+
+	// the way how cookies are done on the client side, without SSR
+	// window.addEventListener('DOMContentLoaded', () => {
+	// 	const cookies = document.cookie;
+	// 	// regex for matching anything until semicolon
+	// 	const match = cookies.match('theme=([^;]+)');
+		
+	// 	let theme = 'system';
+	// 	if (match) {
+	// 		theme = match[1];
+	// 	}
+	// 	changeTheme(theme as Themes);
+	// });
 </script>
